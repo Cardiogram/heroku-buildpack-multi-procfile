@@ -9,7 +9,7 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 PROCFILE=$(cat ${ENV_DIR}/PROCFILE)
-PACKAGE=$(cat ${ENV_DIR}/package.json)
+PACKAGE=$(cat ${ENV_DIR}/PACKAGE)
 
 if [[ -z "${PROCFILE}" ]]; then
     echo "PROCFILE was not set. Aborting" | indent
