@@ -9,13 +9,20 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 PROCFILE=$(cat ${ENV_DIR}/PROCFILE)
+PACKAGE=$(cat ${ENV_DIR}/package.json)
 
 if [[ -z "${PROCFILE}" ]]; then
     echo "PROCFILE was not set. Aborting" | indent
     exit 1
 fi
 
+if [[ -z "${PACKAGE}" ]]; then
+    echo "PACKAGE was not set. Aborting" | indent
+    exit 1
+fi
+
 cp ${BUILD_DIR}/${PROCFILE} ${BUILD_DIR}/Procfile
+cp ${BUILD_DIR}/${PACKAGE} ${BUILD_DIR}/package.json
 
 if ! [ $? ]; then
     echo "FAILED to copy a Procfile" | indent
@@ -23,3 +30,4 @@ if ! [ $? ]; then
 fi
 
 echo "Copied ${PROCFILE} as Procfile successfully" | indent
+echo "Copied ${PACKAGE} as package.json successfully" | indent
